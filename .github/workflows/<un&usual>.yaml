@@ -1,0 +1,27 @@
+name: "S<pec>i& fy!"
+
+on:
+  workflow_dispatch:
+    inputs:
+      outcome:
+        type: choice
+        description: Success or Failure
+        default: 'success'
+        options: 
+        - success
+        - failure
+  
+jobs:
+  test1:
+    name: 'Test 1'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Failure'
+        if: ${{ github.event.inputs.outcome == 'failure' }}
+        run: |
+           failureplease
+           
+      - name: 'Success'
+        run: |
+           echo 'ok'
